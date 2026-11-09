@@ -1,0 +1,6 @@
+# Robots.txt for TRACK AUTOMOTIVE
+User-agent: *
+Allow: /
+
+Sitemap: https://trackautomotive.in/sitemap.xml
+
