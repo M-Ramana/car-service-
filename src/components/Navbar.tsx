@@ -217,15 +217,6 @@ export const Navbar: React.FC = () => {
             <X className="w-5 h-5" />
           </button>
         </div>
-            onClick={() => setMobileOpen(false)}
-            className="w-11 h-11 rounded-xl border border-gray-200 bg-white
-                       flex items-center justify-center text-gray-700 hover:text-gray-950
-                       hover:border-gray-300 transition-all active:scale-95 shadow-sm"
-            aria-label="Close mobile menu"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
 
         {/* Mobile Nav Links */}
         <nav className="flex-1 flex flex-col px-6 pt-6 overflow-y-auto">
