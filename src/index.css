@@ -70,7 +70,16 @@ h1, h2, h3, h4, h5, h6 {
 
   /* ---- Global Unified Layout Container ---- */
   .site-container {
-    @apply w-full max-w-7xl mx-auto px-[18px] sm:px-7 lg:px-10;
+    @apply w-full max-w-7xl mx-auto px-4 xs:px-[18px] sm:px-7 lg:px-10;
+  }
+
+  /* ---- Hide Scrollbar for Horizontal Touch Swipes ---- */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   /* ---- Section Label Pill ---- */

@@ -30,7 +30,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     fullDescription:
       "Our periodic maintenance goes beyond standard oil changes. We perform an exhaustive 60-point checkup encompassing brake pads, filters, spark plugs, suspension components, fluid levels, and cooling systems using OEM-approved oils and parts.",
     image:
-      "https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=900&auto=format&fit=crop",
     benefits: [
       "OEM-Grade Synthetic Oil & Filter Replacements",
       "60-Point Comprehensive Mechanical Inspection",

@@ -88,6 +88,9 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({ item }) =>
           src={item.afterImage}
           alt={item.afterLabel}
           className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+          onError={(e) => {
+            e.currentTarget.src = "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop";
+          }}
         />
 
         {/* "Before" Image (Clipped overlay) */}
@@ -102,6 +105,9 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({ item }) =>
             style={{
               width: containerRef.current ? `${containerRef.current.offsetWidth}px` : "100%",
               height: "100%",
+            }}
+            onError={(e) => {
+              e.currentTarget.src = "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=1200&auto=format&fit=crop";
             }}
           />
         </div>

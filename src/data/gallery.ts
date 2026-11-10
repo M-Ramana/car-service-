@@ -67,7 +67,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     categoryLabel: "Mechanical Care",
     vehicle: "Audi RS6 Avant",
     description: "Complete synthetic fluid overhaul, timing chain tensioner inspection, and cooling flush.",
-    image: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1200&auto=format&fit=crop",
     tag: "Major Service",
   },
   {

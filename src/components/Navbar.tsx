@@ -8,11 +8,11 @@ import {
 } from "../data/business";
 
 const NAV_LINKS = [
-  { label: "Home",        href: "#home" },
-  { label: "Services",    href: "#services" },
-  { label: "About",       href: "#about" },
-  { label: "Gallery",     href: "#gallery" },
-  { label: "Reviews",     href: "#testimonials" },
+  { label: "Home", href: "#home" },
+  { label: "Services", href: "#services" },
+  { label: "About", href: "#about" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Reviews", href: "#testimonials" },
 ];
 
 export const Navbar: React.FC = () => {
@@ -72,11 +72,10 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 h-[80px] sm:h-[88px] lg:h-[92px] flex items-center transition-all duration-300 ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 h-[80px] sm:h-[88px] lg:h-[92px] flex items-center transition-all duration-300 ${scrolled
             ? "bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)]"
             : "bg-white border-b border-gray-100 shadow-none"
-        }`}
+          }`}
       >
         <div className="site-container flex items-center justify-between gap-3 sm:gap-6">
 
@@ -107,19 +106,17 @@ export const Navbar: React.FC = () => {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`group relative py-2 text-sm xl:text-[15px] font-medium tracking-wide transition-colors duration-200 ${
-                    isActive
+                  className={`group relative py-2 text-sm xl:text-[15px] font-medium tracking-wide transition-colors duration-200 ${isActive
                       ? "text-accent font-semibold"
                       : "text-gray-700 hover:text-gray-950"
-                  }`}
+                    }`}
                 >
                   <span>{link.label}</span>
 
                   {/* Smooth Red Underline Hover & Active Animation */}
                   <span
-                    className={`absolute bottom-0 left-0 w-full h-[2px] bg-accent rounded-full transition-transform duration-300 ease-out origin-left ${
-                      isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                    }`}
+                    className={`absolute bottom-0 left-0 w-full h-[2px] bg-accent rounded-full transition-transform duration-300 ease-out origin-left ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      }`}
                   />
                 </a>
               );
@@ -193,11 +190,10 @@ export const Navbar: React.FC = () => {
       {/* MOBILE — Full-Screen Luxury Menu Overlay */}
       <div
         className={`fixed inset-0 z-50 bg-white flex flex-col lg:hidden
-                    transition-all duration-300 ${
-                      mobileOpen
-                        ? "opacity-100 pointer-events-auto"
-                        : "opacity-0 pointer-events-none"
-                    }`}
+                    transition-all duration-300 ${mobileOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+          }`}
         aria-hidden={!mobileOpen}
       >
         {/* Mobile Header */}
@@ -228,11 +224,10 @@ export const Navbar: React.FC = () => {
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
                 className={`flex items-center justify-between px-4 py-4 rounded-xl text-base font-medium transition-all duration-200
-                            border-b border-gray-50 ${
-                              isActive
-                                ? "text-accent font-semibold bg-red-50/50"
-                                : "text-gray-800 hover:text-gray-950 hover:bg-gray-50"
-                            }`}
+                            border-b border-gray-50 ${isActive
+                    ? "text-accent font-semibold bg-red-50/50"
+                    : "text-gray-800 hover:text-gray-950 hover:bg-gray-50"
+                  }`}
                 style={{ animationDelay: `${i * 50}ms` }}
               >
                 <span>{link.label}</span>

@@ -11,6 +11,7 @@ import {
   Youtube,
   Navigation,
   ExternalLink,
+  ChevronDown,
 } from "lucide-react";
 import { TrackLogo } from "./TrackLogo";
 import {
@@ -30,6 +31,8 @@ const NAV_LINKS = [
 
 export const Footer: React.FC = () => {
   const [showPrivacy, setShowPrivacy] = useState(false);
+  const [mobileQuickLinksOpen, setMobileQuickLinksOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -49,15 +52,15 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#101010] text-[#E5E5E5] border-t border-[#303030] relative z-10 pt-16 pb-8">
+    <footer className="bg-[#101010] text-[#E5E5E5] border-t border-[#303030] relative z-10 pt-10 pb-6 sm:pt-16 sm:pb-8">
       <div className="site-container">
 
-        {/* Main 4-Column Professional Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 mb-8 sm:mb-12">
 
           {/* Column 1 (3 cols): Logo, Narrative & Social */}
-          <div className="lg:col-span-3 space-y-4">
-            <div className="pb-1">
+          <div className="lg:col-span-3 space-y-3 sm:space-y-4">
+            <div className="pb-0.5">
               <TrackLogo size="lg" />
             </div>
             <p className="text-xs sm:text-sm text-[#A3A3A3] leading-relaxed max-w-xs font-normal">
@@ -65,46 +68,62 @@ export const Footer: React.FC = () => {
               multi-brand automobile service, repair, and detailing workshop dedicated to precision
               engineering and uncompromised performance.
             </p>
-            <div className="flex items-center gap-2.5 pt-1">
+            <div className="flex items-center gap-2 pt-0.5">
               <a
                 href={BUSINESS_CONFIG.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-[#181818] hover:bg-[#202020] text-[#A3A3A3] hover:text-[#ED1C24]
+                className="p-2 sm:p-2.5 rounded-lg bg-[#181818] hover:bg-[#202020] text-[#A3A3A3] hover:text-[#ED1C24]
                            border border-[#303030] hover:border-[#ED1C24]/50 transition-all duration-200 group"
                 aria-label="Instagram"
               >
-                <Instagram className="w-4 h-4 transition-transform group-hover:scale-110" />
+                <Instagram className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:scale-110" />
               </a>
               <a
                 href={BUSINESS_CONFIG.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-[#181818] hover:bg-[#202020] text-[#A3A3A3] hover:text-[#ED1C24]
+                className="p-2 sm:p-2.5 rounded-lg bg-[#181818] hover:bg-[#202020] text-[#A3A3A3] hover:text-[#ED1C24]
                            border border-[#303030] hover:border-[#ED1C24]/50 transition-all duration-200 group"
                 aria-label="Facebook"
               >
-                <Facebook className="w-4 h-4 transition-transform group-hover:scale-110" />
+                <Facebook className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:scale-110" />
               </a>
               <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-[#181818] hover:bg-[#202020] text-[#A3A3A3] hover:text-[#ED1C24]
+                className="p-2 sm:p-2.5 rounded-lg bg-[#181818] hover:bg-[#202020] text-[#A3A3A3] hover:text-[#ED1C24]
                            border border-[#303030] hover:border-[#ED1C24]/50 transition-all duration-200 group"
                 aria-label="YouTube"
               >
-                <Youtube className="w-4 h-4 transition-transform group-hover:scale-110" />
+                <Youtube className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:scale-110" />
               </a>
             </div>
           </div>
 
-          {/* Column 2 (2 cols): Quick Links */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-heading font-semibold text-[#FFFFFF] uppercase tracking-widest border-b border-[#303030] pb-2.5">
-              Quick Links
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-sm font-medium">
+          {/* Column 2 (2 cols): Quick Links (Collapsible Accordion on Mobile, Always Open on Desktop) */}
+          <div className="lg:col-span-2 space-y-2 sm:space-y-3 border-t md:border-t-0 border-[#242424] pt-4 md:pt-0">
+            {/* Header / Toggle button */}
+            <button
+              type="button"
+              onClick={() => setMobileQuickLinksOpen(!mobileQuickLinksOpen)}
+              className="w-full flex items-center justify-between text-left md:pointer-events-none pb-1.5 md:pb-2.5 border-b border-[#303030]"
+            >
+              <h4 className="text-xs font-heading font-semibold text-[#FFFFFF] uppercase tracking-widest">
+                Quick Links
+              </h4>
+              <ChevronDown
+                className={`w-4 h-4 text-gray-400 md:hidden transition-transform duration-200 ${
+                  mobileQuickLinksOpen ? "rotate-180 text-accent" : ""
+                }`}
+              />
+            </button>
+
+            {/* Links list */}
+            <ul className={`space-y-2 text-xs sm:text-sm font-medium pt-1 ${
+              mobileQuickLinksOpen ? "block" : "hidden md:block"
+            }`}>
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
@@ -119,12 +138,28 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 3 (3 cols): Our Services */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-heading font-semibold text-[#FFFFFF] uppercase tracking-widest border-b border-[#303030] pb-2.5">
-              Our Services
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-sm font-medium">
+          {/* Column 3 (3 cols): Our Services (Collapsible Accordion on Mobile, Always Open on Desktop) */}
+          <div className="lg:col-span-3 space-y-2 sm:space-y-3 border-t md:border-t-0 border-[#242424] pt-4 md:pt-0">
+            {/* Header / Toggle button */}
+            <button
+              type="button"
+              onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+              className="w-full flex items-center justify-between text-left md:pointer-events-none pb-1.5 md:pb-2.5 border-b border-[#303030]"
+            >
+              <h4 className="text-xs font-heading font-semibold text-[#FFFFFF] uppercase tracking-widest">
+                Our Services
+              </h4>
+              <ChevronDown
+                className={`w-4 h-4 text-gray-400 md:hidden transition-transform duration-200 ${
+                  mobileServicesOpen ? "rotate-180 text-accent" : ""
+                }`}
+              />
+            </button>
+
+            {/* Services list */}
+            <ul className={`space-y-2 text-xs sm:text-sm font-medium pt-1 ${
+              mobileServicesOpen ? "block" : "hidden md:block"
+            }`}>
               {SERVICES_DATA.slice(0, 6).map((service) => (
                 <li key={service.id}>
                   <a
@@ -141,8 +176,8 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Column 4 (4 cols): Contact Information, Workshop Address & Map Preview */}
-          <div className="lg:col-span-4 space-y-4">
-            <h4 className="text-xs font-heading font-semibold text-[#FFFFFF] uppercase tracking-widest border-b border-[#303030] pb-2.5">
+          <div className="lg:col-span-4 space-y-3 sm:space-y-4 border-t md:border-t-0 border-[#242424] pt-4 md:pt-0">
+            <h4 className="text-xs font-heading font-semibold text-[#FFFFFF] uppercase tracking-widest border-b border-[#303030] pb-2 sm:pb-2.5">
               Contact & Location
             </h4>
 
@@ -150,9 +185,9 @@ export const Footer: React.FC = () => {
             <div className="space-y-2.5 text-xs sm:text-sm font-normal">
               {/* Phone */}
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#ED1C24] shrink-0" />
+                <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ED1C24] shrink-0" />
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-[#A3A3A3] block leading-tight">Phone</span>
+                  <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#A3A3A3] block leading-tight">Phone</span>
                   <a
                     href={getPhoneCallUrl()}
                     className="text-[#E5E5E5] hover:text-[#ED1C24] font-medium transition-colors"
@@ -164,9 +199,9 @@ export const Footer: React.FC = () => {
 
               {/* Email */}
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#ED1C24] shrink-0" />
+                <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ED1C24] shrink-0" />
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-[#A3A3A3] block leading-tight">Email</span>
+                  <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#A3A3A3] block leading-tight">Email</span>
                   <a
                     href={`mailto:${BUSINESS_CONFIG.email}`}
                     className="text-[#E5E5E5] hover:text-[#ED1C24] font-medium transition-colors"
@@ -177,14 +212,12 @@ export const Footer: React.FC = () => {
               </div>
 
               {/* Workshop Address */}
-              <div className="flex items-start gap-2.5 pt-1">
-                <MapPin className="w-4 h-4 text-[#ED1C24] shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5 pt-0.5">
+                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ED1C24] shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-[#A3A3A3] block leading-tight">Workshop Address</span>
-                  <address className="not-italic text-[#A3A3A3] leading-relaxed text-xs mt-0.5">
-                    {BUSINESS_CONFIG.address.street},<br />
-                    {BUSINESS_CONFIG.address.area},<br />
-                    {BUSINESS_CONFIG.address.city}, {BUSINESS_CONFIG.address.state} - {BUSINESS_CONFIG.address.pincode}
+                  <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#A3A3A3] block leading-tight">Workshop Address</span>
+                  <address className="not-italic text-[#A3A3A3] leading-relaxed text-[11px] sm:text-xs mt-0.5">
+                    {BUSINESS_CONFIG.address.street}, {BUSINESS_CONFIG.address.area}, {BUSINESS_CONFIG.address.city}, {BUSINESS_CONFIG.address.state} - {BUSINESS_CONFIG.address.pincode}
                   </address>
                 </div>
               </div>
@@ -192,7 +225,7 @@ export const Footer: React.FC = () => {
 
             {/* Google Maps Preview */}
             <div className="pt-1">
-              <div className="w-[220px] max-w-full h-[130px] rounded-xl overflow-hidden border border-[#303030] shadow-md relative bg-[#181818]">
+              <div className="w-full sm:w-[220px] max-w-full h-[110px] sm:h-[130px] rounded-xl overflow-hidden border border-[#303030] shadow-md relative bg-[#181818]">
                 <iframe
                   title="Track Automotive Workshop Location"
                   src={BUSINESS_CONFIG.map.embedUrl}
@@ -207,7 +240,7 @@ export const Footer: React.FC = () => {
                 href={BUSINESS_CONFIG.map.directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 mt-2.5 text-xs font-semibold text-[#ED1C24] hover:text-white transition-colors group"
+                className="inline-flex items-center gap-1.5 mt-2 text-xs font-semibold text-[#ED1C24] hover:text-white transition-colors group"
               >
                 <Navigation className="w-3.5 h-3.5" />
                 <span>View on Google Maps</span>
@@ -219,21 +252,21 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-[#303030] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A3A3A3]">
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-            <p className="font-normal">© 2026 TRACK AUTOMOTIVE. All Rights Reserved.</p>
+        <div className="pt-5 sm:pt-6 border-t border-[#303030] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs text-[#A3A3A3]">
+          <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-4 text-center sm:text-left">
+            <p className="font-normal text-[11px] sm:text-xs">© 2026 TRACK AUTOMOTIVE. All Rights Reserved.</p>
             <span className="hidden sm:inline text-[#303030]">•</span>
             <button
               type="button"
               onClick={() => setShowPrivacy(true)}
-              className="hover:text-[#FFFFFF] transition-colors underline underline-offset-4 font-normal"
+              className="hover:text-[#FFFFFF] transition-colors underline underline-offset-4 font-normal text-[11px] sm:text-xs"
             >
               Privacy Policy
             </button>
           </div>
 
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-4">
-            <span className="text-[#A3A3A3]">
+            <span className="text-[#A3A3A3] text-[11px] sm:text-xs">
               <a href={getPhoneCallUrl()} className="text-[#E5E5E5] hover:text-[#ED1C24] font-medium transition-colors">
                 {BUSINESS_CONFIG.phone.display}
               </a>
@@ -242,7 +275,7 @@ export const Footer: React.FC = () => {
               type="button"
               onClick={scrollToTop}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#181818] hover:bg-[#202020]
-                         text-[#A3A3A3] hover:text-[#FFFFFF] border border-[#303030] hover:border-[#ED1C24]/50 transition-colors font-medium"
+                         text-[#A3A3A3] hover:text-[#FFFFFF] border border-[#303030] hover:border-[#ED1C24]/50 transition-colors font-medium text-[11px] sm:text-xs"
               aria-label="Back to top"
             >
               <span>Back to Top</span>
